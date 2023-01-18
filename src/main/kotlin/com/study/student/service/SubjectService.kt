@@ -7,6 +7,6 @@ import java.util.Optional
 
 interface SubjectService {
     fun addSubjects(@Valid subject: SubjectModel):SubjectEntity
-    fun getSubject(subject: Set<String>):Optional <List<SubjectEntity>>
+    //fun getSubject(subject: Set<String>):Optional <List<SubjectEntity>>
     fun getCourse(name:String):Optional<SubjectEntity>
 }

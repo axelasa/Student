@@ -27,9 +27,9 @@ data class StudentEntity (
     @field:NotNull
     @Column(name = "age", nullable = false)
     var age:Date,
-    @Column(name = "subject")
-    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "student")
-    var subject:Set<SubjectEntity>?,
+    //@JoinColumn(name = "subject")
+    @ManyToOne(cascade = [CascadeType.ALL])
+    var subject:SubjectEntity?,
     @Column(name = "updated_at")
     var updatedAt:Date
 ) {
@@ -48,10 +48,10 @@ data class StudentEntity (
         return this::class.simpleName + "(id = $id , createdAt = $createdAt , userName = $userName , firstname = $firstname , lastName = $lastName , age = $age , subject = $subject , updatedAt = $updatedAt )"
     }
     companion object{
-        fun newStudent(student:StudentModel,subject:SubjectEntity):StudentEntity{
+        fun newStudent(student:StudentModel):StudentEntity{
             val now = Date()
             val pupil = StudentEntity(null, createdAt =now ,student.userName,student.firstname,student.lastname,student.age, updatedAt = now,
-                subject = setOf(subject))
+                subject = null)
             return pupil
         }
     }

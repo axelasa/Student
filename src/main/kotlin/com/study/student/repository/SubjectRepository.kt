@@ -7,6 +7,5 @@ import java.util.Optional
 
 @Repository
 interface SubjectRepository:JpaRepository<SubjectEntity,Long>{
-    fun findBySubjects(subject:Set<String>):Optional<List<SubjectEntity>>
     fun findByCourseName(name:String):Optional<SubjectEntity>
 }

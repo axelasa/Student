@@ -3,6 +3,7 @@ package com.study.student.entity
 import com.study.student.model.SubjectModel
 import jakarta.persistence.*
 import org.hibernate.Hibernate
+import org.springframework.data.annotation.Immutable
 
 @Entity
 @Table(name = "subject")
@@ -16,8 +17,8 @@ data  class SubjectEntity (
     @ElementCollection
     @Column(name = "subjects",unique = true)
     val subjects:Set<String> = setOf(),
-    @ManyToOne
-    val student:StudentEntity
+    @OneToMany(fetch = FetchType.LAZY)
+    val student:MutableSet<StudentEntity>
 
         ) {
     override fun equals(other: Any?): Boolean {
@@ -35,8 +36,8 @@ data  class SubjectEntity (
         return this::class.simpleName + "(id = $id , name = $courseName , subjects = $subjects , student = $student )"
     }
     companion object{
-        fun newSubjects(subjects: SubjectModel,student: StudentEntity):SubjectEntity{
-            val newSub = SubjectEntity(null,subjects.courseName, setOf(),student)
+        fun newSubjects(subjects: SubjectModel):SubjectEntity{
+            val newSub = SubjectEntity(null,subjects.courseName, subjects.subject, mutableSetOf())
             return newSub
         }
     }

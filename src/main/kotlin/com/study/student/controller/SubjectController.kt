@@ -1,5 +1,7 @@
 package com.study.student.controller
 
+import com.study.student.dto.SubjectDto
+import com.study.student.global.GlobalServices.Companion.subjectService
 import com.study.student.model.ApiResponse
 import com.study.student.model.SubjectModel
 import com.study.student.service.SubjectService
@@ -13,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("subject")
-class SubjectController(var subjectService:SubjectService){
+class SubjectController(){
     @PostMapping
     fun insertSubjects(@Valid @RequestBody subjects:SubjectModel):ResponseEntity<Any>{
         var newSubject = subjectService.addSubjects(subjects)
-        return ResponseEntity(ApiResponse(HttpStatus.OK.value(),"Subjects Saved Successfully",newSubject),HttpStatus.OK)
+        return ResponseEntity(ApiResponse(HttpStatus.OK.value(),"Subjects Saved Successfully",SubjectDto.fromSubjectEntity(newSubject)),HttpStatus.OK)
     }
 }
