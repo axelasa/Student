@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController
 class SubjectController(){
     @PostMapping
     fun insertSubjects(@Valid @RequestBody subjects:SubjectModel):ResponseEntity<Any>{
-        var newSubject = subjectService.addSubjects(subjects)
+        val newSubject = subjectService.addSubjects(subjects)
         return ResponseEntity(ApiResponse(HttpStatus.OK.value(),"Subjects Saved Successfully",SubjectDto.fromSubjectEntity(newSubject)),HttpStatus.OK)
     }
 }

@@ -27,7 +27,7 @@ data class StudentEntity (
     @field:NotNull
     @Column(name = "age", nullable = false)
     var age:Date,
-    //@JoinColumn(name = "subject")
+    @JoinColumn(name = "subject")
     @ManyToOne(cascade = [CascadeType.ALL])
     var subject:SubjectEntity?,
     @Column(name = "updated_at")

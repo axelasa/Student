@@ -47,13 +47,13 @@ class StudentController() {
         StudentDto.fromStudentEntity(it)
     }.toList()
 
-    @PostMapping
+    @PostMapping("new_student")
     fun createStudent(@Valid @RequestBody studentModel:StudentModel):ResponseEntity<Any>{
         val newStudent = studentService.createStudent(studentModel)
 
         return ResponseEntity(ApiResponse(HttpStatus.CREATED.value(),"Student created",StudentDto.fromStudentEntity(newStudent)),HttpStatus.CREATED)
     }
-    @PutMapping
+    @PutMapping("update_student")
     fun updateStudent(@Valid @RequestBody studentModel: UpdatedStudent):ResponseEntity<Any>{
         val updatedStudent = studentService.updateStudent(studentModel)
 
