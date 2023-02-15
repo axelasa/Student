@@ -56,7 +56,7 @@ class StudentServiceImpl (private var studentRepo:StudentRepository): StudentSer
         return studentRepo.findByUserNameAndId(name, id)
     }
 
-    override fun enrollCourse(enrollForm: EnrollForm):StudentEntity {
+    override fun enrollCourse(enrollForm: EnrollForm) {
 
         val existingUser  = getStudent(enrollForm.username)
 
@@ -68,6 +68,6 @@ class StudentServiceImpl (private var studentRepo:StudentRepository): StudentSer
 
         existingUser.get().subject = existingCourse.get()
         existingCourse.get().student.add(existingUser.get())
-        return existingUser.get()
+
     }
 }

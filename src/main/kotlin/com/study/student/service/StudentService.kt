@@ -17,5 +17,5 @@ interface StudentService {
     fun getStudentsById(id:Long):Optional<StudentEntity>
     fun getStudentByUniqueValues(name: String,id: Long):Optional<StudentEntity>
 
-    fun enrollCourse(enrollForm: EnrollForm):StudentEntity
+    fun enrollCourse(enrollForm: EnrollForm)
 }

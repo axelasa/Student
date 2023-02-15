@@ -61,8 +61,8 @@ class StudentController() {
     }
     @PutMapping("enroll")
     fun enrollStudent(@RequestBody enrollForm: EnrollForm):ResponseEntity<Any>{
-      val updateStudent = studentService.enrollCourse(enrollForm)
+       studentService.enrollCourse(enrollForm)
 
-        return ResponseEntity(ApiResponse(HttpStatus.OK.value(),"Success",StudentDto.fromStudentEntity(updateStudent)),HttpStatus.OK)
+        return ResponseEntity(ApiResponse(HttpStatus.OK.value(),"Success",null),HttpStatus.OK)
     }
 }
